@@ -1,17 +1,34 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-var saveBtn = document.querySelector(".btn saveBtn col-2 col-md-1");
-var count   = localStorage.getItem('count');
-
-
-
 
 
 $(function () {
+  var saveBtn = document.querySelector(".btn saveBtn col-2 col-md-1")
   saveBtn.addEventListener('click', function(){
 
   });
+  var businessHours = [0900, 1000, 1100, 1200, 1300, 1400];
+
+for(var i = 0; i < businessHours.length; i ++) {
+    var eventFromStorage = localStorage.getItem("hour-"+businessHours[i]);
+    var hourContainerElm = document.querySelector('#hour-'+businessHours[i]);
+    hourContainerElm.textContent = eventFromStorage;
+};
+
+let currentHour = dayjs().hour();
+
+  console.log(currentHour);
+
+  for (i = 0; i < businessHour.length; i++) {
+    if (businessHour[i] < currentHour) {
+      $('.time-block').addClass('past');
+    } else if (businessHour[i] > currentHour) {
+      $('.time-block').addClass('future');
+    } else {
+      $('.time-block').addClass('present');
+    }
+  };
   // TODO: Add a listener for click events on the save button. 
   
   // This code should use the id in the containing time-block as a key to save the user input in
@@ -33,3 +50,4 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+

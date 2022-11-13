@@ -10,7 +10,7 @@ $(function () {
     let calenderText = $(this).siblings('.description').get(0).value;
     localStorage.setItem($(this).parent().attr('id'), calenderText);
     console.log()
-    var workHours = [0900, 1000, 1100, 1200, 1300, 1400];
+    var workHours = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 
 for(var i = 0; i < workHours.length; i ++) {
     var eventFromStorage = localStorage.getItem(`hour-${workHours[i]}`);

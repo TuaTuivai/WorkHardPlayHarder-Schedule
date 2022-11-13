@@ -4,15 +4,17 @@
 
 
 $(function () {
-  var saveBtn = document.querySelector(".btn saveBtn col-2 col-md-1")
+  var saveBtn = document.querySelector(".saveBtn")
   saveBtn.addEventListener('click', function(){
+    $(this).siblings('.description').get(0).value;
+    let calenderText = $(this).siblings('.description').get(0).value;
+    localStorage.setItem($(this).parent().attr('id'), calenderText);
+    console.log()
+    var workHours = [0900, 1000, 1100, 1200, 1300, 1400];
 
-  });
-  var businessHours = [0900, 1000, 1100, 1200, 1300, 1400];
-
-for(var i = 0; i < businessHours.length; i ++) {
-    var eventFromStorage = localStorage.getItem("hour-"+businessHours[i]);
-    var hourContainerElm = document.querySelector('#hour-'+businessHours[i]);
+for(var i = 0; i < workHours.length; i ++) {
+    var eventFromStorage = localStorage.getItem(`hour-${workHours[i]}`);
+    var hourContainerElm = document.querySelector(`#hour-${workHours[i]}`);
     hourContainerElm.textContent = eventFromStorage;
 };
 
@@ -20,10 +22,10 @@ let currentHour = dayjs().hour();
 
   console.log(currentHour);
 
-  for (i = 0; i < businessHour.length; i++) {
-    if (businessHour[i] < currentHour) {
+  for (i = 0; i < workHours.length; i++) {
+    if (workHours[i] < currentHour) {
       $('.time-block').addClass('past');
-    } else if (businessHour[i] > currentHour) {
+    } else if (workHours[i] > currentHour) {
       $('.time-block').addClass('future');
     } else {
       $('.time-block').addClass('present');
@@ -49,5 +51,6 @@ let currentHour = dayjs().hour();
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
+});  
 });
 
